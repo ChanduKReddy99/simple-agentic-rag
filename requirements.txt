@@ -1,0 +1,20 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+langchain
+langchain-text-splitters
+langchain-openai
+langchain-chroma
+langgraph
+chromadb
+python-dotenv
+structlog
+pytest
+httpx
+
+# eval
+ragas
+datasets
+
+
