@@ -1,0 +1,13 @@
+2026-06-08 22:40:16 | INFO     | ==== fastapi_app ====
+2026-06-08 22:40:16 | INFO     |         log_file: logs\fastapi_app_20260608_224016.log
+2026-06-08 22:45:46 | INFO     | [START] input_guardrails | chat_request
+2026-06-08 22:45:46 | INFO     |         input_allowed: True
+2026-06-08 22:45:46 | INFO     |         input_reason: None
+2026-06-08 22:45:46 | INFO     | [DONE]  input_guardrails | passed
+2026-06-08 22:45:46 | INFO     | [START] agent_invoke
+2026-06-08 22:45:52 | INFO     |         route: rag_context
+2026-06-08 22:45:52 | INFO     | [DONE]  agent_invoke
+2026-06-08 22:45:52 | INFO     | [START] output_guardrails | chat_response
+2026-06-08 22:45:52 | INFO     |         output_allowed: True
+2026-06-08 22:45:52 | INFO     |         output_reason: None
+2026-06-08 22:45:52 | INFO     | [DONE]  output_guardrails | passed

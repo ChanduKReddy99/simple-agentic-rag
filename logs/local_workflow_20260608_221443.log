@@ -1,0 +1,68 @@
+2026-06-08 22:14:43 | INFO     | ==== local_workflow ====
+2026-06-08 22:14:43 | INFO     |         log_file: logs\local_workflow_20260608_221443.log
+2026-06-08 22:14:43 | INFO     | [START] local_workflow
+2026-06-08 22:14:43 | INFO     | ==== document_ingestion ====
+2026-06-08 22:14:43 | INFO     | [START] document_ingestion
+2026-06-08 22:14:43 | INFO     | [START] load_documents | source=data
+2026-06-08 22:14:43 | INFO     | [DONE]  load_documents | documents=4
+2026-06-08 22:14:43 | INFO     | [START] chunk_documents | chunk_size=900, overlap=150
+2026-06-08 22:14:43 | INFO     | [DONE]  chunk_documents | chunks=4
+2026-06-08 22:14:43 | INFO     | [START] build_embeddings | model=text-embedding-3-small
+2026-06-08 22:14:45 | INFO     | [DONE]  build_embeddings
+2026-06-08 22:14:45 | INFO     | [START] build_vectorstore | collection=agentic_rag_docs
+2026-06-08 22:14:46 | INFO     | [DONE]  build_vectorstore | persist_dir=storage/chroma
+2026-06-08 22:14:46 | INFO     | [START] ingest_documents | chunks=4
+2026-06-08 22:14:47 | INFO     | [DONE]  ingest_documents | collection=agentic_rag_docs
+2026-06-08 22:14:47 | INFO     |         ingested_chunks: 4
+2026-06-08 22:14:47 | INFO     | [DONE]  document_ingestion
+2026-06-08 22:14:47 | INFO     | ==== guardrail_smoke_tests ====
+2026-06-08 22:14:47 | INFO     | [START] guardrail_smoke_tests
+2026-06-08 22:14:47 | INFO     | [START] input_guardrails
+2026-06-08 22:14:47 | INFO     |         safe_input_allowed: True
+2026-06-08 22:14:47 | INFO     |         prompt_injection_blocked: True
+2026-06-08 22:14:47 | INFO     |         secret_request_blocked: True
+2026-06-08 22:14:47 | INFO     | [DONE]  input_guardrails
+2026-06-08 22:14:47 | INFO     | [START] output_guardrails
+2026-06-08 22:14:47 | INFO     |         safe_output_allowed: True
+2026-06-08 22:14:47 | INFO     |         sensitive_output_blocked: True
+2026-06-08 22:14:47 | INFO     | [DONE]  output_guardrails
+2026-06-08 22:14:47 | INFO     | [DONE]  guardrail_smoke_tests
+2026-06-08 22:14:47 | INFO     | [START] ragas_evaluation
+2026-06-08 22:14:47 | INFO     |         dataset: evals\golden_dataset.json
+2026-06-08 22:14:47 | INFO     |         run_type: local
+2026-06-08 22:14:47 | INFO     |         run_type: local
+2026-06-08 22:14:47 | INFO     |         dataset: evals\golden_dataset.json
+2026-06-08 22:14:47 | INFO     |         report: reports\ragas_report.json
+2026-06-08 22:14:47 | INFO     | [START] load_eval_cases
+2026-06-08 22:14:47 | INFO     | [DONE]  load_eval_cases | cases=4
+2026-06-08 22:14:47 | INFO     | [START] build_rag_agent
+2026-06-08 22:14:49 | INFO     | [DONE]  build_rag_agent
+2026-06-08 22:14:49 | INFO     | [START] generate_answers | cases=4
+2026-06-08 22:14:49 | INFO     | [START] rag_case | How does FraudShield handle high-risk transactions?
+2026-06-08 22:14:53 | INFO     |         route: rag_context
+2026-06-08 22:14:53 | INFO     |         contexts: 4
+2026-06-08 22:14:53 | INFO     | [DONE]  rag_case | How does FraudShield handle high-risk transactions?
+2026-06-08 22:14:53 | INFO     | [START] rag_case | What signals should trigger AML transaction review?
+2026-06-08 22:14:55 | INFO     |         route: rag_context
+2026-06-08 22:14:55 | INFO     |         contexts: 4
+2026-06-08 22:14:55 | INFO     | [DONE]  rag_case | What signals should trigger AML transaction review?
+2026-06-08 22:14:55 | INFO     | [START] rag_case | What should production ML systems monitor?
+2026-06-08 22:14:59 | INFO     |         route: rag_context
+2026-06-08 22:14:59 | INFO     |         contexts: 4
+2026-06-08 22:14:59 | INFO     | [DONE]  rag_case | What should production ML systems monitor?
+2026-06-08 22:14:59 | INFO     | [START] rag_case | How does the cached agent workflow reduce cost and latency?
+2026-06-08 22:15:01 | INFO     |         route: rag_context
+2026-06-08 22:15:01 | INFO     |         contexts: 4
+2026-06-08 22:15:01 | INFO     | [DONE]  rag_case | How does the cached agent workflow reduce cost and latency?
+2026-06-08 22:15:01 | INFO     | [DONE]  generate_answers
+2026-06-08 22:15:01 | INFO     | [START] load_ragas_dependencies
+2026-06-08 22:15:06 | INFO     | [DONE]  load_ragas_dependencies
+2026-06-08 22:15:06 | INFO     |         metrics: faithfulness, answer_relevancy, context_precision, context_recall
+2026-06-08 22:15:06 | INFO     | [START] run_ragas_metrics
+2026-06-08 22:15:17 | INFO     | [DONE]  run_ragas_metrics
+2026-06-08 22:15:17 | INFO     | [START] write_report | reports\ragas_report.json
+2026-06-08 22:15:17 | INFO     | [DONE]  write_report | reports\ragas_report.json
+2026-06-08 22:15:17 | INFO     |         scores: {"faithfulness": 0.8928571428571428, "answer_relevancy": 0.9028767858123743, "context_precision": 0.9999999999125, "context_recall": 1.0}
+2026-06-08 22:15:17 | INFO     | [DONE]  ragas_evaluation
+2026-06-08 22:15:17 | INFO     | [SKIP]  fastapi_server | not requested
+2026-06-08 22:15:17 | INFO     | [DONE]  local_workflow
