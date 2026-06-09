@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fraudshield_high_risk_routing",
+    "question": "How does FraudShield handle high-risk transactions?",
+    "ground_truth": "High-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions.",
+    "tags": ["fraudshield", "routing", "analyst-review"]
+  },
+  {
+    "id": "aml_review_signals",
+    "question": "What signals should trigger AML transaction review?",
+    "ground_truth": "Transactions should be reviewed for suspicious behavior such as unusually high amounts, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts.",
+    "tags": ["aml", "policy", "review"]
+  },
+  {
+    "id": "model_monitoring_signals",
+    "question": "What should production ML systems monitor?",
+    "ground_truth": "Production ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.",
+    "tags": ["model-monitoring", "mlops"]
+  },
+  {
+    "id": "cached_agent_layers",
+    "question": "How does the cached agent workflow reduce cost and latency?",
+    "ground_truth": "It uses exact cache, semantic cache, and tool/result cache to reuse previous answers, similar requests, and expensive tool outputs.",
+    "tags": ["agent-workflow", "cache", "latency"]
+  }
+]
