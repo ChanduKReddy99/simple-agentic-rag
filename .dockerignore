@@ -1,0 +1,14 @@
+.venv
+__pycache__
+*.pyc
+.git
+.gitignore
+.env
+.env.*
+uv.lock.bak
+logs
+outputs
+eval_results
+.pytest_cache
+.mypy_cache
+.ruff_cache
