@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "run_type": "local",
+    "created_at": "2026-06-08T22:15:17",
+    "dataset": "evals\\golden_dataset.json",
+    "case_count": 4,
+    "metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_precision",
+      "context_recall"
+    ],
+    "chat_model": "gpt-4o-mini",
+    "embedding_model": "text-embedding-3-small",
+    "retrieval_k": 5
+  },
+  "scores": {
+    "faithfulness": 0.8928571428571428,
+    "answer_relevancy": 0.9028767858123743,
+    "context_precision": 0.9999999999125,
+    "context_recall": 1.0
+  },
+  "records": [
+    {
+      "id": "fraudshield_high_risk_routing",
+      "user_input": "How does FraudShield handle high-risk transactions?",
+      "response": "FraudShield routes high-risk transactions to human analysts, providing them with explanations, evidence, and recommended next actions for further review.",
+      "retrieved_contexts": [
+        "# FraudShield AI System\n\nFraudShield is an AI-assisted fraud decisioning platform for banking transactions.\nIt evaluates card and account transactions using machine learning models, rule-based checks, device intelligence, and analyst review workflows.\n\nThe system uses risk scores from models such as XGBoost and Vowpal Wabbit, combines them with deterministic business rules, and returns a decision such as approve, review, or block.\n\nHigh-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions.",
+        "# AML Policy Notes\n\nTransactions should be reviewed when they show suspicious behavior such as unusually high amount, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts.\n\nThe system should preserve audit trails for all decisions. Analyst actions, model scores, rule triggers, and final decisions must be logged for compliance.\n\nSuspicious Activity Reports may be required when investigation confirms suspicious patterns according to internal AML policies.",
+        "# Cached Agent Workflow\n\nThe cached agent workflow reduces LLM cost and latency by using a three-layer cache.\n\nLayer 1 is exact cache. It returns a previous answer when the same request appears again.\nLayer 2 is semantic cache. It retrieves similar previous requests using embeddings.\nLayer 3 is tool/result cache. It reuses expensive tool outputs when the underlying input has not changed.\n\nObservability includes request traces, cache hit ratio, latency, token usage, and error rates.",
+        "# Model Monitoring\n\nProduction ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.\n\nData drift can be detected using statistical tests such as Kolmogorov-Smirnov test, population stability index, Jensen-Shannon divergence, and feature distribution comparison.\n\nModel quality can be tracked using delayed labels, precision, recall, F1 score, ROC AUC, PR AUC, and calibration metrics."
+      ],
+      "tags": [
+        "fraudshield",
+        "routing",
+        "analyst-review"
+      ],
+      "reference": "High-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions."
+    },
+    {
+      "id": "aml_review_signals",
+      "user_input": "What signals should trigger AML transaction review?",
+      "response": "Transactions should be reviewed when they show suspicious behavior such as unusually high amounts, unusual geography, high-risk merchant categories, sanctions exposure, or repeated failed attempts.",
+      "retrieved_contexts": [
+        "# AML Policy Notes\n\nTransactions should be reviewed when they show suspicious behavior such as unusually high amount, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts.\n\nThe system should preserve audit trails for all decisions. Analyst actions, model scores, rule triggers, and final decisions must be logged for compliance.\n\nSuspicious Activity Reports may be required when investigation confirms suspicious patterns according to internal AML policies.",
+        "# FraudShield AI System\n\nFraudShield is an AI-assisted fraud decisioning platform for banking transactions.\nIt evaluates card and account transactions using machine learning models, rule-based checks, device intelligence, and analyst review workflows.\n\nThe system uses risk scores from models such as XGBoost and Vowpal Wabbit, combines them with deterministic business rules, and returns a decision such as approve, review, or block.\n\nHigh-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions.",
+        "# Model Monitoring\n\nProduction ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.\n\nData drift can be detected using statistical tests such as Kolmogorov-Smirnov test, population stability index, Jensen-Shannon divergence, and feature distribution comparison.\n\nModel quality can be tracked using delayed labels, precision, recall, F1 score, ROC AUC, PR AUC, and calibration metrics.",
+        "# Cached Agent Workflow\n\nThe cached agent workflow reduces LLM cost and latency by using a three-layer cache.\n\nLayer 1 is exact cache. It returns a previous answer when the same request appears again.\nLayer 2 is semantic cache. It retrieves similar previous requests using embeddings.\nLayer 3 is tool/result cache. It reuses expensive tool outputs when the underlying input has not changed.\n\nObservability includes request traces, cache hit ratio, latency, token usage, and error rates."
+      ],
+      "tags": [
+        "aml",
+        "policy",
+        "review"
+      ],
+      "reference": "Transactions should be reviewed for suspicious behavior such as unusually high amounts, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts."
+    },
+    {
+      "id": "model_monitoring_signals",
+      "user_input": "What should production ML systems monitor?",
+      "response": "Production ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.",
+      "retrieved_contexts": [
+        "# Model Monitoring\n\nProduction ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.\n\nData drift can be detected using statistical tests such as Kolmogorov-Smirnov test, population stability index, Jensen-Shannon divergence, and feature distribution comparison.\n\nModel quality can be tracked using delayed labels, precision, recall, F1 score, ROC AUC, PR AUC, and calibration metrics.",
+        "# AML Policy Notes\n\nTransactions should be reviewed when they show suspicious behavior such as unusually high amount, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts.\n\nThe system should preserve audit trails for all decisions. Analyst actions, model scores, rule triggers, and final decisions must be logged for compliance.\n\nSuspicious Activity Reports may be required when investigation confirms suspicious patterns according to internal AML policies.",
+        "# Cached Agent Workflow\n\nThe cached agent workflow reduces LLM cost and latency by using a three-layer cache.\n\nLayer 1 is exact cache. It returns a previous answer when the same request appears again.\nLayer 2 is semantic cache. It retrieves similar previous requests using embeddings.\nLayer 3 is tool/result cache. It reuses expensive tool outputs when the underlying input has not changed.\n\nObservability includes request traces, cache hit ratio, latency, token usage, and error rates.",
+        "# FraudShield AI System\n\nFraudShield is an AI-assisted fraud decisioning platform for banking transactions.\nIt evaluates card and account transactions using machine learning models, rule-based checks, device intelligence, and analyst review workflows.\n\nThe system uses risk scores from models such as XGBoost and Vowpal Wabbit, combines them with deterministic business rules, and returns a decision such as approve, review, or block.\n\nHigh-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions."
+      ],
+      "tags": [
+        "model-monitoring",
+        "mlops"
+      ],
+      "reference": "Production ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors."
+    },
+    {
+      "id": "cached_agent_layers",
+      "user_input": "How does the cached agent workflow reduce cost and latency?",
+      "response": "The cached agent workflow reduces cost and latency by utilizing a three-layer cache system. Layer 1 (exact cache) returns previous answers for identical requests, eliminating the need for recomputation. Layer 2 (semantic cache) retrieves similar previous requests using embeddings, allowing for quicker responses to related queries. Layer 3 (tool/result cache) reuses outputs from expensive tools when the input remains unchanged, further minimizing processing time and resource usage.",
+      "retrieved_contexts": [
+        "# Cached Agent Workflow\n\nThe cached agent workflow reduces LLM cost and latency by using a three-layer cache.\n\nLayer 1 is exact cache. It returns a previous answer when the same request appears again.\nLayer 2 is semantic cache. It retrieves similar previous requests using embeddings.\nLayer 3 is tool/result cache. It reuses expensive tool outputs when the underlying input has not changed.\n\nObservability includes request traces, cache hit ratio, latency, token usage, and error rates.",
+        "# Model Monitoring\n\nProduction ML systems should monitor data drift, prediction drift, model quality, latency, throughput, and system errors.\n\nData drift can be detected using statistical tests such as Kolmogorov-Smirnov test, population stability index, Jensen-Shannon divergence, and feature distribution comparison.\n\nModel quality can be tracked using delayed labels, precision, recall, F1 score, ROC AUC, PR AUC, and calibration metrics.",
+        "# AML Policy Notes\n\nTransactions should be reviewed when they show suspicious behavior such as unusually high amount, unusual geography, high-risk merchant category, sanctions exposure, or repeated failed attempts.\n\nThe system should preserve audit trails for all decisions. Analyst actions, model scores, rule triggers, and final decisions must be logged for compliance.\n\nSuspicious Activity Reports may be required when investigation confirms suspicious patterns according to internal AML policies.",
+        "# FraudShield AI System\n\nFraudShield is an AI-assisted fraud decisioning platform for banking transactions.\nIt evaluates card and account transactions using machine learning models, rule-based checks, device intelligence, and analyst review workflows.\n\nThe system uses risk scores from models such as XGBoost and Vowpal Wabbit, combines them with deterministic business rules, and returns a decision such as approve, review, or block.\n\nHigh-risk transactions are routed to human analysts with explanations, evidence, and recommended next actions."
+      ],
+      "tags": [
+        "agent-workflow",
+        "cache",
+        "latency"
+      ],
+      "reference": "It uses exact cache, semantic cache, and tool/result cache to reuse previous answers, similar requests, and expensive tool outputs."
+    }
+  ]
+}
