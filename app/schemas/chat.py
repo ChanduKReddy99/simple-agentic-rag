@@ -1,3 +1,9 @@
+"""Pydantic models for the chat API contract.
+
+These classes define the accepted request payload, source metadata, and the
+structured response returned by `/api/v1/chat`.
+"""
+
 from pydantic import BaseModel, Field
 from typing import Any
 

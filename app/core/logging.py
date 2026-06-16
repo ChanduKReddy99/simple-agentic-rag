@@ -1,3 +1,10 @@
+"""Small structured logging helpers used by scripts and the API.
+
+The helpers keep console/file logs readable by marking major workflow sections,
+step starts, step finishes, and key details during ingestion, evaluation, and
+chat execution.
+"""
+
 import logging
 import sys
 from datetime import datetime

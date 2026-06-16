@@ -1,4 +1,7 @@
 .env
+# Files Git should not track for this project.
+# This keeps local environments, secrets, caches, logs, and generated artifacts
+# out of version control.
 .venv/
 __pycache__/
 .pytest_cache/

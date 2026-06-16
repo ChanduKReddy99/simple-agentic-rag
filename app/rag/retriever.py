@@ -1,3 +1,9 @@
+"""Retrieval service used by the agent graph.
+
+The service wraps Chroma similarity search, normalizes returned scores, and
+returns typed retrieval results for routing and source formatting.
+"""
+
 from dataclasses import dataclass
 import warnings
 

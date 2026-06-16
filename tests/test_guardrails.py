@@ -1,3 +1,5 @@
+"""Tests for deterministic input and output guardrails."""
+
 from app.core.guardrails import validate_answer, validate_question
 
 

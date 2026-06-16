@@ -1,3 +1,9 @@
+"""Command-line document ingestion entrypoint.
+
+This script loads markdown files, chunks them, embeds them, and stores the
+resulting vectors in Chroma so the chat API has searchable context.
+"""
+
 import argparse
 
 from app.core.config import get_settings

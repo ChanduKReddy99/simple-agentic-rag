@@ -1,3 +1,9 @@
+"""Chroma vector store setup and ingestion helpers.
+
+This file opens the persistent Chroma collection and writes chunked documents
+with deterministic IDs so the RAG index can be reused across runs.
+"""
+
 from langchain_chroma import Chroma
 from langchain_core.embeddings import Embeddings
 from langchain_core.documents import Document

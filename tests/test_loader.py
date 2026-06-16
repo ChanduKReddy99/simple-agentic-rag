@@ -1,3 +1,5 @@
+"""Tests for loading markdown knowledge-base documents."""
+
 from app.rag.loader import load_markdown_documents
 
 

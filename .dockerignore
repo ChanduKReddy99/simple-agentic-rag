@@ -1,3 +1,6 @@
+# Files excluded from the Docker build context.
+# Keeping virtualenvs, caches, logs, secrets, and local outputs out of the image
+# makes builds smaller and avoids accidentally copying private config.
 .venv
 __pycache__
 *.pyc

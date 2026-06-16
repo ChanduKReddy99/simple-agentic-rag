@@ -1,3 +1,9 @@
+"""Deterministic input and output safety checks.
+
+This module blocks obvious prompt-injection attempts, secret-revealing requests,
+and generated answers that look like credentials before they reach users.
+"""
+
 from dataclasses import dataclass, field
 import re
 from typing import Any

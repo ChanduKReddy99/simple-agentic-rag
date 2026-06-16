@@ -1,3 +1,9 @@
+"""RAGAS evaluation runner for the Agentic RAG workflow.
+
+This file runs the agent against a golden dataset, scores answers and retrieved
+contexts, and writes JSON reports for local, CI, or nightly quality checks.
+"""
+
 import argparse
 import json
 import warnings

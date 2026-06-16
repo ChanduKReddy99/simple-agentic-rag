@@ -1,3 +1,9 @@
+"""Prompt templates used by the Agentic RAG workflow.
+
+The graph imports these templates for query rewriting, answering from retrieved
+context, and producing a safe fallback answer when context is weak.
+"""
+
 QUERY_REWRITE_PROMPT = """
 You are a query rewriting assistant for a production RAG system.
 Rewrite the user's question into a precise search query.

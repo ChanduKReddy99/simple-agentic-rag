@@ -1,3 +1,5 @@
+"""Tests for document chunking behavior and chunk metadata."""
+
 from langchain_core.documents import Document
 from app.rag.chunker import chunk_documents
 

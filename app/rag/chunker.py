@@ -1,3 +1,9 @@
+"""Document chunking helpers for retrieval.
+
+This module splits loaded documents into overlapping chunks and assigns stable
+chunk IDs so retrieved passages can be traced back in API responses.
+"""
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 

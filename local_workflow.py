@@ -1,3 +1,10 @@
+"""Local end-to-end workflow runner.
+
+This script ties together ingestion, guardrail smoke tests, optional RAGAS
+evaluation, and optional API serving so the whole project can be exercised from
+one command during development.
+"""
+
 import argparse
 import json
 from pathlib import Path
