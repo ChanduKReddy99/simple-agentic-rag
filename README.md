@@ -10,6 +10,8 @@ The app serves a small RAG API over local markdown documents. The LangGraph work
 - LangGraph workflow for query rewrite, retrieval, context answer, and fallback routing
 - Local Chroma vector store persisted under `storage/chroma`
 - OpenAI chat and embedding models configured through `.env`
+- LLM Gateway (LiteLLM) integration with support for Redis Semantic Caching and fallback routing
+- Observability and tracing via Langfuse Callback Handler
 - Deterministic input/output guardrails for prompt-injection and secret leakage checks
 - Markdown document ingestion from `data/`
 - RAGAS evaluation with local, CI, and nightly run modes
@@ -85,6 +87,17 @@ CHUNK_OVERLAP=150
 RETRIEVAL_K=5
 MIN_RETRIEVAL_SCORE=0.35
 GUARDRAILS_ENABLED=true
+
+# LLM Gateway Config (Optional)
+LLM_GATEWAY_URL=http://localhost:4000/v1
+
+# Langfuse Config (Optional)
+LANGFUSE_PUBLIC_KEY=pk-lf-...
+LANGFUSE_SECRET_KEY=sk-lf-...
+LANGFUSE_HOST=https://cloud.langfuse.com
+
+# Redis Config (Optional, used by LiteLLM)
+REDIS_URL=redis://localhost:6379/0
 ```
 
 ## Ingest Documents
@@ -122,9 +135,20 @@ curl http://localhost:8000/api/v1/health
 Ask a question:
 
 ```bash
+
 curl -X POST http://localhost:8000/api/v1/chat \
   -H "Content-Type: application/json" \
   -d "{\"question\":\"How does FraudShield handle high-risk transactions?\",\"session_id\":\"local-demo\"}"
+```
+
+# Get litellm models from cli
+
+```bash
+$token = "sk-local-litellm-master-key"
+Invoke-WebRequest `
+  -Uri "http://localhost:4000/v1/models" `
+  -Headers @{ Authorization = "Bearer $token" } |
+  Select-Object -ExpandProperty Content
 ```
 
 The chat response includes:
@@ -184,6 +208,43 @@ GUARDRAILS_ENABLED=true
 ```
 
 When enabled, the API blocks obvious prompt-injection attempts, requests to reveal secrets or system prompts, and generated responses that look like credentials.
+
+## LLM Gateway & Observability
+
+This project incorporates a production-grade infrastructure pattern using an LLM Gateway (**LiteLLM**) and an Observability platform (**Langfuse**).
+
+### What is an LLM Gateway?
+An LLM Gateway acts as a proxy between your RAG application and LLM providers. Instead of calling OpenAI directly from code, all requests go through LiteLLM. This provides:
+1. **Semantic Caching (`redis-semantic`)**: Converts prompt inputs into embedding vectors and queries Redis to find similar past questions. If a query matches with high similarity, the answer is returned instantly without hitting OpenAI, saving cost and latency.
+2. **Resilience & Fallbacks**: If the primary LLM provider (e.g., OpenAI) goes down or hits rate limits, the gateway can automatically failover to backup models (e.g., Anthropic Claude, Azure OpenAI) without modifying application code.
+3. **Decoupling**: Models, API keys, and load balancing are configured declaratively in `litellm-config.yaml` rather than being hardcoded in application settings.
+
+### Why run LiteLLM as a Standalone Docker Proxy (Server) vs. Python SDK?
+LiteLLM can be used either as an imported Python library (`pip install litellm`) or as a standalone Docker proxy server. This project uses the **Standalone Proxy Server** pattern for production-grade benefits:
+1. **Security (Least Privilege)**: LLM API keys are isolated to the LiteLLM container. Your FastAPI application pods never see your raw API keys, reducing security attack vectors.
+2. **Independent Scaling**: In systems like Kubernetes, your API application can scale out independently of the LLM Gateway depending on resource bottlenecks.
+3. **Shared Caching**: Multiple distinct microservices inside a cluster can point to the same central gateway service and share the same Redis semantic cache instance, preventing duplicate LLM queries.
+4. **Zero-Downtime Updates**: Changing backing models or adding fallbacks only requires a ConfigMap restart on the LiteLLM gateway, keeping the main application online and untouched.
+
+### What is Langfuse?
+Langfuse is an open-source LLM engineering and observability platform. 
+1. **Tracing**: It captures the entire execution path of your LangGraph state graph. You can inspect the inputs and outputs of every single step (such as query rewriting, Chroma retrieval, and final context generation).
+2. **Performance Tracking**: Automatically monitors latency, token counts, and API costs.
+3. **Prompt Management & Evals**: Allows testing and versioning prompts outside the codebase and linking user feedback (like thumbs up/down) to traces.
+
+To run LiteLLM alongside the RAG API, spin up the services using:
+```bash
+docker compose up --build -d
+```
+
+LiteLLM cache entries currently use a 5 minute Redis TTL via `litellm_settings.cache_params.default_redis_ttl`.
+
+When running the API directly on your host machine, keep `LLM_GATEWAY_URL=http://localhost:4000/v1`.
+Docker Compose overrides the API container to use `http://litellm-gateway:4000/v1`, because `localhost`
+inside a container points to that container, not to the LiteLLM service.
+
+Traces will be sent asynchronously to your configured `LANGFUSE_HOST` instance.
+
 
 ## Tests
 
