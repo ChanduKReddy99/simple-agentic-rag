@@ -1,3 +1,6 @@
+# pip-compatible dependency list for users who install without uv.
+# The main project source of truth is `pyproject.toml`, but this file keeps the
+# classic `pip install -r requirements.txt` setup path available.
 fastapi
 uvicorn[standard]
 pydantic
@@ -12,9 +15,9 @@ python-dotenv
 structlog
 pytest
 httpx
+langfuse
 
 # eval
 ragas
 datasets
-
 

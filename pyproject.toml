@@ -1,3 +1,6 @@
+# Project metadata and dependency definitions for uv.
+# This file declares the Python version, runtime packages, and optional test/eval
+# dependency groups used by local development, Docker, and CI.
 [project]
 name = "simple-agentic-rag"
 version = "0.1.0"
@@ -18,6 +21,7 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "structlog>=26.1.0",
     "uvicorn[standard]>=0.49.0",
+    "langfuse>=2.0.0",
 ]
 
 [dependency-groups]
