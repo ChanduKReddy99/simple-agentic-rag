@@ -1,3 +1,6 @@
+# Builds the production FastAPI container for the Agentic RAG API.
+# It installs locked dependencies with uv, copies app/data files, and runs
+# Uvicorn on port 8000 inside the container.
 FROM python:3.12-slim
 
 WORKDIR /app
