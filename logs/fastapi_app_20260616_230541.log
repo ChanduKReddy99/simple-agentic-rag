@@ -1,0 +1,80 @@
+2026-06-16 23:05:41 | INFO     | ==== fastapi_app ====
+2026-06-16 23:05:41 | INFO     |         log_file: logs/fastapi_app_20260616_230541.log
+2026-06-16 23:05:41 | INFO     |         gateway_auth_source: LITELLM_MASTER_KEY
+2026-06-16 23:07:26 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:07:26 | INFO     |         input_allowed: True
+2026-06-16 23:07:26 | INFO     |         input_reason: None
+2026-06-16 23:07:26 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:07:26 | INFO     | [START] agent_invoke
+2026-06-16 23:07:40 | INFO     |         route: rag_context
+2026-06-16 23:07:40 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:07:40 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:07:40 | INFO     |         output_allowed: True
+2026-06-16 23:07:40 | INFO     |         output_reason: None
+2026-06-16 23:07:40 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:15:58 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:15:58 | INFO     |         input_allowed: True
+2026-06-16 23:15:58 | INFO     |         input_reason: None
+2026-06-16 23:15:58 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:15:58 | INFO     | [START] agent_invoke
+2026-06-16 23:16:02 | INFO     |         route: rag_context
+2026-06-16 23:16:02 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:16:02 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:16:02 | INFO     |         output_allowed: True
+2026-06-16 23:16:02 | INFO     |         output_reason: None
+2026-06-16 23:16:02 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:19:32 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:19:32 | INFO     |         input_allowed: True
+2026-06-16 23:19:32 | INFO     |         input_reason: None
+2026-06-16 23:19:32 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:19:32 | INFO     | [START] agent_invoke
+2026-06-16 23:19:36 | INFO     |         route: rag_context
+2026-06-16 23:19:36 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:19:36 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:19:36 | INFO     |         output_allowed: True
+2026-06-16 23:19:36 | INFO     |         output_reason: None
+2026-06-16 23:19:36 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:24:12 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:24:12 | INFO     |         input_allowed: True
+2026-06-16 23:24:12 | INFO     |         input_reason: None
+2026-06-16 23:24:12 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:24:12 | INFO     | [START] agent_invoke
+2026-06-16 23:24:25 | INFO     |         route: rag_context
+2026-06-16 23:24:25 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:24:25 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:24:25 | INFO     |         output_allowed: True
+2026-06-16 23:24:25 | INFO     |         output_reason: None
+2026-06-16 23:24:25 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:29:23 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:29:23 | INFO     |         input_allowed: True
+2026-06-16 23:29:23 | INFO     |         input_reason: None
+2026-06-16 23:29:23 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:29:23 | INFO     | [START] agent_invoke
+2026-06-16 23:29:24 | INFO     |         route: rag_context
+2026-06-16 23:29:24 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:29:24 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:29:24 | INFO     |         output_allowed: True
+2026-06-16 23:29:24 | INFO     |         output_reason: None
+2026-06-16 23:29:24 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:32:21 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:32:21 | INFO     |         input_allowed: True
+2026-06-16 23:32:21 | INFO     |         input_reason: None
+2026-06-16 23:32:21 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:32:21 | INFO     | [START] agent_invoke
+2026-06-16 23:32:26 | INFO     |         route: rag_context
+2026-06-16 23:32:26 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:32:26 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:32:26 | INFO     |         output_allowed: True
+2026-06-16 23:32:26 | INFO     |         output_reason: None
+2026-06-16 23:32:26 | INFO     | [DONE]  output_guardrails | passed
+2026-06-16 23:32:59 | INFO     | [START] input_guardrails | chat_request
+2026-06-16 23:32:59 | INFO     |         input_allowed: True
+2026-06-16 23:32:59 | INFO     |         input_reason: None
+2026-06-16 23:32:59 | INFO     | [DONE]  input_guardrails | passed
+2026-06-16 23:32:59 | INFO     | [START] agent_invoke
+2026-06-16 23:32:59 | INFO     |         route: rag_context
+2026-06-16 23:32:59 | INFO     | [DONE]  agent_invoke
+2026-06-16 23:32:59 | INFO     | [START] output_guardrails | chat_response
+2026-06-16 23:32:59 | INFO     |         output_allowed: True
+2026-06-16 23:32:59 | INFO     |         output_reason: None
+2026-06-16 23:32:59 | INFO     | [DONE]  output_guardrails | passed
