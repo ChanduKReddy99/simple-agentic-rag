@@ -1,3 +1,9 @@
+"""HTTP routes for health checks and chat requests.
+
+This file validates incoming questions, invokes the Agentic RAG graph, attaches
+optional Langfuse callbacks, runs output guardrails, and shapes API responses.
+"""
+
 from fastapi import APIRouter, Request, HTTPException
 from app.core.config import get_settings
 from app.core.guardrails import validate_answer, validate_question
@@ -37,8 +43,22 @@ def chat(payload: ChatRequest, request: Request) -> ChatResponse:
     if agent is None:
         raise HTTPException(status_code=503, detail="Agent is not initialized")
 
+    config = {}
+    if (
+        settings.langfuse_enabled
+        and settings.langfuse_public_key
+        and getattr(request.app.state, "langfuse_client", None) is not None
+    ):
+        from langfuse.langchain import CallbackHandler
+
+        config["callbacks"] = [
+            CallbackHandler(public_key=settings.langfuse_public_key)
+        ]
+        if payload.session_id:
+            config["metadata"] = {"langfuse_session_id": payload.session_id}
+
     log_step_start("agent_invoke")
-    result = agent.invoke(payload.question)
+    result = agent.invoke(payload.question, config=config)
     log_detail("route", result.get("route", "unknown"))
     log_step_finish("agent_invoke")
 

@@ -1,3 +1,10 @@
+"""LangGraph workflow that powers the Agentic RAG behavior.
+
+The graph rewrites user questions, retrieves relevant Chroma documents, decides
+whether the context is strong enough, and then either answers from context or
+uses a safe fallback prompt.
+"""
+
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
@@ -11,9 +18,15 @@ class AgenticRAGGraph:
     def __init__(self, retriever: RetrieverService, settings: Settings):
         self.retriever = retriever
         self.settings = settings
+        llm_api_key = (
+            settings.llm_gateway_api_key
+            or settings.litellm_master_key
+            or settings.openai_api_key
+        )
         self.llm = ChatOpenAI(
             model=settings.openai_chat_model,
-            api_key=settings.openai_api_key,
+            api_key=llm_api_key,
+            base_url=settings.llm_gateway_url,
             temperature=0.1,
         )
         self.graph = self._build_graph()
@@ -100,5 +113,5 @@ class AgenticRAGGraph:
     def _format_contexts(docs):
         return [d.document.page_content for d in docs]
 
-    def invoke(self, question: str) -> AgentState:
-        return self.graph.invoke({"question": question})
+    def invoke(self, question: str, config: dict | None = None) -> AgentState:
+        return self.graph.invoke({"question": question}, config=config)

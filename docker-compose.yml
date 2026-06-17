@@ -1,11 +1,32 @@
+# Local Docker Compose stack for running the RAG API together with LiteLLM.
+# The API talks to LiteLLM through the Docker service name, while both services
+# share `.env` for model, key, Langfuse, and Redis cache settings.
 services:
   agentic-rag-api:
     build: .
+    image: agentic-rag-api:latest
     container_name: agentic-rag-api
     env_file:
       - .env
+    environment:
+      # Inside Docker, use the Compose service name instead of localhost.
+      LLM_GATEWAY_URL: http://litellm-gateway:4000/v1
     ports:
       - "8000:8000"
     volumes:
       - ./storage:/app/storage
       - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - litellm-gateway
+
+  litellm-gateway:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm-gateway
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm-config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    env_file:
+      - .env

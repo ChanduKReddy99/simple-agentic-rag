@@ -1,0 +1,15 @@
+# LiteLLM proxy configuration for the LLM gateway container.
+# It exposes the configured OpenAI-compatible model name and enables Redis
+# caching for repeated or similar LLM requests.
+model_list:
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: os.environ/OPENAI_API_KEY
+
+litellm_settings:
+  cache: true
+  cache_type: redis
+  cache_params:
+    default_redis_ttl: 300
+  redis_url: os.environ/REDIS_URL
